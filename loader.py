@@ -367,7 +367,8 @@ class LoaderMod(loader.Module):
 		worked = self.allmodules.unload_module(clazz.capitalize()) + self.allmodules.unload_module(clazz)
 		without_prefix = []
 		for mod in worked:
-			assert mod.startswith("friendly-telegram.modules."), mod
+			if not mod.startswith("friendly-telegram.modules."):
+				raise AssertionError(mod)
 			without_prefix += [unescape_percent(mod[len("friendly-telegram.modules."):])]
 		it = set(self._db.get(__name__, "loaded_modules", [])).difference(without_prefix)
 		self._db.set(__name__, "loaded_modules", list(it))
