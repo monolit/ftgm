@@ -74,8 +74,7 @@ async def prepare(message):
         reply = await message.get_reply_message()
         if not reply or not await getimg(reply):
             return False
-        else:
-            IN_IMG= await fill(reply)
+        IN_IMG= await fill(reply)
     else:
         IN_IMG= await fill(message)
 
@@ -91,6 +90,5 @@ async def fill(ae):
         image.save(output)
         output.seek(0)
         return output
-    else:
-        ext_=ae.document.mime_type.split("/")[-1]
-        return await message.edit("""{} <b>extension</b> is not supportrted""".format(ext_))
+    ext_=ae.document.mime_type.split("/")[-1]
+    return await message.edit("""{} <b>extension</b> is not supportrted""".format(ext_))
