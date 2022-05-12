@@ -20,15 +20,14 @@ class GetPPMod(loader.Module):
 
 		reply=await message.get_reply_message()
 		limit=69
-		if not args:
-			if reply:
-				if not reply.fwd_from:
-					u=await self.client.get_entity(reply.from_id)
-					await getpfp(self,message,u, limit)
-				else:
-					fwd=reply.fwd_from.from_id
-					entity=await self.client.get_entity(fwd)
-					await getpfp(self,message,entity, limit)
+		if not args and reply:
+			if not reply.fwd_from:
+				u=await self.client.get_entity(reply.from_id)
+				await getpfp(self,message,u, limit)
+			else:
+				fwd=reply.fwd_from.from_id
+				entity=await self.client.get_entity(fwd)
+				await getpfp(self,message,entity, limit)
 
 		if len(args)>1:
 			try:
