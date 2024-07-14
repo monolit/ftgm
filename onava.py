@@ -20,6 +20,7 @@ class OnAvaMod(loader.Module):
                     await message.client.download_media(reply.media, "ava.mp4")
                     await message.edit("Конвертируем...")
                     os.system("ffmpeg -i ava.mp4 -c copy -an gifavaa.mp4 -y")
+                    # 1280 is eligible but some shit on tg android
                     os.system("ffmpeg -i gifavaa.mp4 -crf 23 -vf scale=1024:1024 gifava.mp4 -y")
                 else:
                     await message.client.download_media(reply.media, "tgs.tgs")
